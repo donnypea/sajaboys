@@ -194,6 +194,21 @@
   </div>
 </section>
 
+<!-- 🖼️ Fullscreen Gallery Modal with Arrows -->
+<div id="gallery-modal" class="gallery-modal">
+  <span class="close-gallery" onclick="closeGalleryModal()">&times;</span>
+  
+  <img id="modal-gallery-img" src="" alt="Full View">
+
+  <!-- ⬅️ Previous & Next Arrows -->
+  <div class="gallery-arrows">
+    <span class="arrow left" onclick="showPrevImage()">&#10094;</span>
+    <span class="arrow right" onclick="showNextImage()">&#10095;</span>
+  </div>
+</div>
+
+
+
 
 <section id="videos">
   <h2 class="section-title">🎥 Clips</h2>
@@ -479,6 +494,58 @@
     } else {
       // Skip it on refresh
       overlay.style.display = "none";
+    }
+  });
+</script>
+
+<script>
+  const galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
+  const galleryModal = document.getElementById('gallery-modal');
+  const galleryModalImg = document.getElementById('modal-gallery-img');
+  let currentGalleryIndex = 0;
+
+  // Open gallery modal on image click
+  galleryImages.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      currentGalleryIndex = index;
+      showGalleryImage();
+      galleryModal.style.display = 'flex';
+    });
+  });
+
+  // Show current image
+  function showGalleryImage() {
+    galleryModalImg.src = galleryImages[currentGalleryIndex].src;
+  }
+
+  // Next image
+  function showNextImage() {
+    currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
+    showGalleryImage();
+  }
+
+  // Previous image
+  function showPrevImage() {
+    currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
+    showGalleryImage();
+  }
+
+  // Close modal
+  function closeGalleryModal() {
+    galleryModal.style.display = 'none';
+  }
+
+  // Close on outside click
+  galleryModal.addEventListener('click', (e) => {
+    if (e.target.id === 'gallery-modal') closeGalleryModal();
+  });
+
+  // Arrow key controls
+  document.addEventListener('keydown', (e) => {
+    if (galleryModal.style.display === 'flex') {
+      if (e.key === 'Escape') closeGalleryModal();
+      if (e.key === 'ArrowRight') showNextImage();
+      if (e.key === 'ArrowLeft') showPrevImage();
     }
   });
 </script>
