@@ -1,0 +1,8 @@
+Section	Description
+🎬 Hero Banner	Movie title, tagline, background image of Saja Boys
+🧑‍🎤 Members Section	Cards or modals showing each member (name, role, personality, powers, etc.)
+🎵 Songs	Playable music section or TikTok/Spotify embeds
+📸 Gallery	Fan art, movie stills, or animated posters
+🎥 Videos	Embedded TikTok or YouTube trailers, teasers, or fancams
+📱 Responsive Design	Looks good on desktop and mobile
+🔮 Bonus	Easter eggs or interactive elements like "Choose Your Bias" or quizzes
